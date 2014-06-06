@@ -1,0 +1,13 @@
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\HintaseurantaKarkkainen.exe
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\HintaseurantaKarkkainen.pdb
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\obj\Debug\HintaseurantaKarkkainen.exe
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\obj\Debug\HintaseurantaKarkkainen.pdb
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\CommandLine.dll
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\CommandLine.xml
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\HintaseurantaKarkkainen.exe.config
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\obj\Debug\HintaseurantaKarkkainen.Properties.Resources.resources
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\obj\Debug\HintaseurantaKarkkainen.csproj.GenerateResource.Cache
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\obj\Debug\HintaseurantaKarkkainen.csprojResolveAssemblyReference.cache
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Toomas\Desktop\HintaseurantaKarkkainen\HintaseurantaKarkkainen\bin\Debug\HtmlAgilityPack.xml

@@ -1,0 +1,506 @@
+Tarvittavat tiedostot: *.exe, CommandLine.dll, HtmlAgilityPack.dll
+
+Käyttö: *.exe --outputfile tiedoston_nimi --sleeptime aika_millisekunteina --categories "mahdolliset|kategoriat|eroteltu|merkillä"
+esim: HintaseurantaKarkkainen.exe --outputfile test.xml --sleeptime 4000 --categories "lapset lelut|KotiAndSisustaminen Valaistus Lamput"
+
+
+Kaikki kategoriat ovat muotoa "Valikoima pääkategoria alikategoria" (ei ole eroa isoja vai pieniä kirjaimia).
+Esim. "KotiAndSisustaminen Valaistus Ulko- ja pihavalaisimet", "Urheilu Talviurheilu Laskettelu", "Tietotekniikka Puhelimet Alykellot".
+ "ä" ja "ö" kirjaimet korjattu "a":lla ja "o":lla sopivuuksien vuoksi. Valikoimat, pääkategoriat ja alikategoriat erotetaan "|"-merkillä jos haluat parsata monta.
+ Jos haluat parsata koko kaupan, syötä --categories "all".
+ Jos haluat parsata valikoiman, syötä --categories "KotiAndSisustaminen " tai "KodintekniikkaAndViihde|Harraste "
+ Jos haluat parsata tietyn pääkategorian, syötä "pääkategoria ", esim. "Valaistus " tai "KotiAndSisustaminen Sisustustavara" tai "Tietotekniikka Puhelimet"  tai "KotiAndSisustaminen Valaistus|Harraste Ratsastus" (huom. välilyönti)
+ Jos haluan parsata alikategorian(t) käytä sen(niiden) nimieä(et). Mutta mielummin käyttää myös ainakin pääkategoriaa koska ohjelma hakee kaikki kategoriat missä merkkijono esintyy ja jos merkkijono ei ole uniikki voidaan saada tiedot eri kategoreista. Esim. alikategoria "PlayStation 3" hakee sekä pelikonsolit, että PlayStation 3-pelit. Jos halutaan vain pelit, oikea muoto olisi esim.: "Pelit PlayStation 3|Lamput|Pyyhkeet|Liinavaatteet|PihaAndPuutarha PuutarhanHoito"
+
+ Seuraavassa kaikki mahdolliset kategoriat:
+
+ KotiAndSisustaminen
+ 	Valaistus
+ 		Ulko- ja pihavalaisimet
+ 		Yleisvalaisimet
+ 		Lamput
+ 		Kattovalaisimet
+ 		Sisustusvalaisimet
+ 		Valaisintarvikkeet
+
+	Kodintekstiili
+		Pyyhkeet
+		Matot
+		Kasityotarvikkeet
+		Taloustekstiilit
+		Kankaat
+		Sisustustekstiilit
+		Verhot
+		Verhotarvikkeet
+		Sangyt ja patjat
+		Tyynyt ja paalliset
+		Peitteet
+		Liinavaatteet
+
+	Sisustustavara
+		Lahjatuotteet
+		Servetit
+		Sauna- ja kylpyhuone
+		Koriste-esineet
+		Kayttoesineet
+		Kynttilatarvikkeet
+		Kynttilat
+		Taulut, julisteet
+		Kehykset
+		Sesonkituotteet
+
+	Keittio
+		Astiastot
+		Aterimet
+		Juomalasit/lasisto
+		Veitset
+		Tarjoiluvalineet
+		Keittiotyovalineet
+		Taloustavara
+		Keitto- ja paistoastiat
+		Kertakaytto
+		Muut keittiovaalineet
+
+	Kodinhoito
+		Pyykinkuivausvalineet
+		Puhdistus- ja siivouvalineet
+		Yleispesuaineet
+		Tekstiilien pesuaineet
+
+	Toimistotarvike
+		Almanakat,kalenterit, kartat
+		Paperitarvikkeet
+		Kirjetarvikkeet, kortit
+		Pakkaus, paketointi
+		Kirjoitus-, piirustusvalineet
+		Toimistovalineet
+		Laskimet
+
+PihaAndPuutarha
+	PihanLeikkivalineet
+		Trampoliinit
+		Keinut ja leikkikeskukset
+		Pomppulinnat
+		Uima-altaat
+		Polkuautot
+		Monkijat
+
+	Puutarha
+		Grillit ja tarvikkeet
+		Puutarhatyokalut
+		Puutarhan rakennustarvikkeet
+		Piharakennukset ja kalusteet
+		Aitatarvikkeet
+		Puutarharuukut,-patsaat
+
+	PuutarhanHoito
+		Kasvinsuojeluaineet
+		Hyonteisten torjunta-aineet
+		Puutarhalannoitteet
+		Maanparannus
+		Puutarhan tarvikkeet
+		Siemenet
+
+Urheilu
+	Kesalajit
+		Pesapallo
+		Frisbeegolf
+		Rullalautailu, -luistelu
+		Golf
+		Katukiekko
+		Yleisurheilu
+		Tennis
+		Jalkapallo
+		Vesiurheilu
+
+	KuntourheiluPyoraily
+		Pyoraily
+		Vapaa-aika ja pelit
+		Kuntourheilu
+		Kengat
+
+	Jaaurheilu
+		Mailat
+		Kiekkoluistimet
+		Kaunoluistimet
+		Tarvikkeet
+		Polvisuojat
+		Muut jaaurheluvaline
+		Maalivahdinsuojat
+		Kyynarsuojat
+		Kyparat
+		Kiekot
+		Housut
+		Hartiasuojat
+		Hanskat
+		Teipit
+
+	Urheilutekstiili
+		Lapset & nuoret
+		Unisex
+		Miehet
+		Naiset
+
+	Hiihtourheilu
+		Voitelu
+		Voiteet
+		Sukset
+		Siteet
+		Hiihtokengat
+		Sauvat
+		Suksisarjat
+		Tarvikkeet
+		Rullasuksivalineet
+		Hionta
+		Hiihtotekstiilit
+		Hiihtolasit
+		Muut hiihtourheiluva
+
+	Talviurheilu
+		Lautailu
+		Laskettelu
+		Lasketteluvarusteet
+
+	Sisapelit
+		Squash
+		Lentopallo
+		Poytatennis
+		Sulkapallo
+		Koripallo
+		Salibandy
+
+Era
+	Retkeily
+		Valaisimet
+		Lumikengat, erasukset, vaellussauvat
+		Teltat, makuupussit
+		Retkeilyasusteet
+		Retkivarusteet
+		Vaelluskengat
+		Reput, rinkat
+		Retkiruoat
+		Suunnistusvalineet
+		Kumiveneet, kanootit
+		Kellunta-asusteet
+		Muut retkeilytarvikkeet
+
+	AseetAndTarvikkeet
+		Ilma-aseet
+		Airsoft
+		Jousiammunta
+		Lupavapaat aseet
+		Aseet
+		Aseenosat, -tarvikkeet
+		Patruunat
+		Tahtaimet
+		Asesailytys
+		Latausvalineet
+		Ampumaratavalineet
+		Asekirjat, videot
+
+	Metsastys
+		Metsastyskirjat ja -videot
+		Ansaraudat, pyydykset
+		Naamioverkot, valineet
+		Riistankasittely
+		Houkuttimet
+		Tutkat, puhelimet, yms
+		Jalkineet
+		Metsastysasusteet
+
+	Kalastus
+		Kalastusasusteet
+		Pyydyskalastus
+		Pilkki-, onkikalastus
+		Kahluuvarusteet, kelluntarenkaat
+		Perhokalastus
+		Kaikuluotaimet
+		Pakit, rasiat, laukut
+		Viehekalastus
+		Muut kalastustarvikkeet
+
+
+KodintekniikkaAndViihde
+	Foto
+		Kamerat
+		Kameratarvikkeet
+		Kiikarit ja kaukoputket
+		Muistikortit
+		Foto Albumit
+
+	Autohifi
+		Kaapelit ja tarvikkeet
+		Kaiuttimet
+		Paatelaitteet
+		Rakennussarjat
+		Vahvistimet
+
+	Kodinkone
+		Keittion pienkoneet
+		Kodinhoito
+		Kasivalaisimet, paristot
+		Pesu- ja kuivauskoneet
+		Terveyden- ja kauneudenhoito
+		Kylmalaitteet
+		Uunit, liedet
+
+	Musiikkitarvikkeet
+		Kaapelit ja adapterit
+		Kuulokkeet
+		Mikrofonit
+		PA -laitteet
+
+	ViihdeElektroniikka
+		AV-laitteet
+		Digiboksit
+		Kaiuttimet
+		Varashalyttimet
+		Soittimet
+		Stereot ja radiot
+		Televisiot, projektorit
+		Telineet, kotelot
+		A/V-kaapelit, tarvikkeet
+
+Tietotekniikka
+	Puhelimet
+		Puhelimet
+		Alykellot
+		Suojakalvot
+		Suojakuoret
+		Laturit
+		Telineet
+		Kotelot
+		Handsfree
+		Kaapelit, adapte
+		Autonavigointi
+		Autonavig. tarvikkeet
+		Muut tarvikkeet
+		Akut
+		Ohjelmat
+
+	Tietokoneet
+		Kannettavat
+		Poytakoneet
+		Tablet tarvikkeet
+		Tablet tietokoneet
+
+	Komponentit
+		Asemat
+		Kiintolevyt
+		Naytonohjaimet
+		Ohjainkortit
+		Aanikortit
+		Tv-, videoeditointikortit
+
+	Oheislaitteet
+		Tulostimet
+		Tulostinvarit
+		Nappaimistot ja hiiret
+		Web -kamerat
+		Kaiuttimet
+		Headsetit ja mikrofonit
+		Virransyotto
+		Pc-peliohjaimet
+		Muistikortinlukijat
+		USB muistit
+		Naytot
+		Verkkotuotteet
+		Atk-tarvikkeet
+		Ohjelmistot
+		PC-kaapelit, tarvikkeet
+		Tallenteet
+
+PelitAndViihde
+	Pelit
+		PC
+		Gameboy
+		Nintendo DS
+		Nintendo Wii
+		PS Vita
+		PlayStation 3
+		PlayStation Portable
+		Xbox 360
+
+	Pelikonsolit
+		Gameboy Advance / SP
+		Nintendo DS
+		Nintendo Wii
+		PS Vita
+		PlayStation 4
+		PlayStation 3
+		PlayStation Portable
+		Xbox 360
+
+	Kirjat
+		Yleinen kirjallisuus
+		Oppikirjat
+		Askartelukirjat
+
+	Elokuvat
+		DVD
+		Blu-ray
+
+Harraste
+	Lemmikkielaimet
+		Koriat
+		Kissat
+		Jyrsijat
+		Kanit
+		Linnut
+		Kalat
+
+	Ratsastus
+		Tarvikkeet
+		Pukeutuminen
+
+	RCHarraste
+		Pienoismallit
+		Lennokit
+		Rc-autot
+		Lennokkitarvikkeet
+		Polttomoottorit, tarvikkeet
+		Sahkomoottorit, tarvikkeet
+		Radiolaitteet
+		Akut
+		Rakennusmateriaali
+		Veneet
+		Helikopterit
+
+	TaideJaAskartelu
+		Varit
+		Paperit, kankaat
+		Tarvikkeet
+		Maalaus, piirtovalineet
+		Askartelu
+
+Lapset
+	Lelut
+		Pelit
+		Poikien lelut
+		Tyttojen lelut
+		Vauvalelut
+		Rakennussarjat, Legot
+		Ulkolelut
+		Elainlelut
+		Muut lelut
+
+	Lastentarvike
+		Hoitotarvikkeet
+		Kalusteet
+		Vaunut
+
+Tyokalut
+	Kasityokalut
+		Tera-, taontatyokalut
+		Lapiot, talikot, yms
+		Hionta
+		Mittaustyokalut
+		Vaantimet, avaimet
+		Sinkilapistoolit, sinkilat
+		Puristimet, ulosvetimet
+		Pihdit, leikkurit
+		Maalaustarvikkeet
+		Laatoitus-, muurarintyokalut
+		Muut kasityokalut
+
+	Tyovalineet
+		Porakoneet
+		Aggregaatit
+		Halkomakoneet
+		Lammittimet
+		Paineilmakoneet
+		Pesurit, pumput
+		Imurit
+		Muut sahkotyokalut
+		Lumilingot
+		Hitsaus
+		Hiomakoneet
+		Sahat
+		Jyrsimet
+		Metsurin tyokalut
+		Hoylat
+
+	TyoasutJaMuut
+		Tyokalujen sailytys
+		Tyoasut, suojaimet
+		Maatalous
+
+	Autotarvike
+		Autokemikaalit
+		Auton sisustus
+		Autotarvike
+		Peravaunutarvikkeet
+		Renkaat ja vanteet
+		Sahkojarjestelmatarvikkeet
+		Voiteluaineet
+		Suodattimet
+		Caravan
+		Venetarvikkeet
+
+Rakentaminen
+	TulisijatKiukaat
+		Arinat
+		Kaminat
+		Liesitasot
+		Noki-, tulipesanluuk
+		Savupellit
+		Takkaluukut
+		Takkatarvikkeet
+		Uunineduspellit
+		Uuninluukut
+		Puukiukaat
+		Sahkokiukaat
+		Kiuastarvikkeet
+		LVI
+
+	Sisustaminen
+		Kiinnitystarvikkeet
+		Kaakelit
+		Tapetit
+		Maalit
+		Lattiapinnoitteet
+		Listat
+		Liimat, teipit
+		Laastit, vesieristeet
+		Rakentaminen
+		Ovet
+		Maalaustarvikkeet
+		Laatoitus-,muurarintyokalut
+
+	Sisustustarvike
+		Kodintarvike
+		Helat ja pienrauta
+		Kylpyhuonetarvike
+		Kodinturvalaitteet
+
+	Sahkotarvike
+		Kaapelit
+		Sahkonjakelu
+		Kytkimet
+		Pistorasiat
+		Asennustarvikkeet
+		Pistotulpat, adapterit
+		Halytys ja valvontalaitteet
+		Sahkotuotanto
+		Lammittimet, ilmastointi
+		Jatkojohdot
+
+Henkilokohtainen
+	hygienia
+		Suunhoito
+		Deodorantit
+		Saippuat
+		Hiustenhoitotuotteet
+		Muut hygieniatuotteet
+
+	Kosmetiikka
+		Tuoksut
+		Ihovoiteet, oljyt, balsamit
+		Silmakosmetiikka
+		Meikkaus
+		Kynsienhoito
+		Jalkahoitovalmisteet
+		Parranhoitovalineet
+		Tarvikkeet
+
+	Luontaistuote
