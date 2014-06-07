@@ -14,12 +14,16 @@ namespace HintaseurantaKarkkainen
 {
     class MainEntryPoint
     {
+
+        public static List<int> BenchmarkList = new List<int>(); 
+
         static void Main(string[] args)
         {
             // Tarkistetaan ovatko kaikki argumentit syötetty
             var options = new Options();
             if (CommandLine.Parser.Default.ParseArguments(args, options))
             {
+                long programStartTime = Libs.GetUnixTimestamp();
                 // Kaikki argumentit syötetty oikein. Jatketaan
 
                 // Luodaan tiedosto XML-ia varten
@@ -59,7 +63,9 @@ namespace HintaseurantaKarkkainen
                     }
                 }
 
-                Console.WriteLine("Everything done. Exiting");
+                long programEndTime = Libs.GetUnixTimestamp();
+                Console.WriteLine("Everything done. Total time took: {0} seconds. Average iteration time: {1} ms.Exiting", 
+                    (programEndTime - programStartTime) / 1000, BenchmarkList.Sum() / BenchmarkList.Count);
 
             }
 

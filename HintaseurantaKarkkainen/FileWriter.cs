@@ -37,85 +37,90 @@ namespace HintaseurantaKarkkainen
 
             foreach (Product product in products)
             {
-                // Creating XML-element
-                XmlNode productElement = _xmlDocument.CreateElement("product"); // Creating element
-                _xmlDocument.DocumentElement.AppendChild(productElement); // Pointing the parent
-
-                // Filling elements
-                XmlNode subElementName = _xmlDocument.CreateElement("name");
-                subElementName.InnerText = product.Name;
-                productElement.AppendChild(subElementName);
-
-                XmlNode subElementPrice = _xmlDocument.CreateElement("price");
-                subElementPrice.InnerText = product.Price.ToString();
-                productElement.AppendChild(subElementPrice);
-
-                XmlNode subElementPictureUrl = _xmlDocument.CreateElement("pictureUrl");
-                subElementPictureUrl.InnerText = product.PictureUrl;
-                productElement.AppendChild(subElementPictureUrl);
-
-                XmlNode subElementProductUrl = _xmlDocument.CreateElement("productUrl");
-                subElementProductUrl.InnerText = product.ProductUrl;
-                productElement.AppendChild(subElementProductUrl);
-
-                XmlNode subElementManufacturer = _xmlDocument.CreateElement("manufacturer");
-                subElementManufacturer.InnerText = product.Manufacturer;
-                productElement.AppendChild(subElementManufacturer);
-
-                XmlNode subElementProductNumber = _xmlDocument.CreateElement("productNumber");
-                subElementProductNumber.InnerText = product.ProductNumber.ToString();
-                productElement.AppendChild(subElementProductNumber);
-
-                XmlNode subElementStoreInternet = _xmlDocument.CreateElement("storeInternet");
-                subElementStoreInternet.InnerText = product.StoreInternet.ToString();
-                productElement.AppendChild(subElementStoreInternet);
-
-                XmlNode subElementStoreYlivieska = _xmlDocument.CreateElement("storeYlivieska");
-                subElementStoreYlivieska.InnerText = product.StoreYlivieska.ToString();
-                productElement.AppendChild(subElementStoreYlivieska);
-
-                XmlNode subElementStoreOulu = _xmlDocument.CreateElement("storeOulu");
-                subElementStoreOulu.InnerText = product.StoreOulu.ToString();
-                productElement.AppendChild(subElementStoreOulu);
-
-                XmlNode subElementStoreLahti = _xmlDocument.CreateElement("storeLahti");
-                subElementStoreLahti.InnerText = product.StoreLahti.ToString();
-                productElement.AppendChild(subElementStoreLahti);
-
-                XmlNode subElementStoreLi = _xmlDocument.CreateElement("storeLi");
-                subElementStoreLi.InnerText = product.StoreLi.ToString();
-                productElement.AppendChild(subElementStoreLi);
-
-                XmlNode subElementDeliveryTime = _xmlDocument.CreateElement("delirevyTime");
-                subElementDeliveryTime.InnerText = product.DeliveryTime;
-                productElement.AppendChild(subElementDeliveryTime);
-
-                XmlNode subElementDeliverPrice = _xmlDocument.CreateElement("delirevyPrice");
-                subElementDeliverPrice.InnerText = product.DeliverPrice.ToString();
-                productElement.AppendChild(subElementDeliverPrice);
-
-                XmlNode subElementEan = _xmlDocument.CreateElement("ean");
-                subElementEan.InnerText = product.Ean;
-                productElement.AppendChild(subElementEan);
-
-                XmlNode subElementAttributes = _xmlDocument.CreateElement("attributes");
-                foreach (var pair in product.Attributes)
-                {
-                    string key = pair.Key;
-                    string value = pair.Value;
-                    XmlNode attribute = _xmlDocument.CreateElement("attribute");
-                    XmlAttribute attributeName = _xmlDocument.CreateAttribute("name");
-                    attributeName.Value = key;
-                    attribute.Attributes.Append(attributeName);
-                    attribute.InnerText = value;
-                    subElementAttributes.AppendChild(attribute);
-
-                }
-                productElement.AppendChild(subElementAttributes);
+                WriteProductToXml(product, _xmlDocument);
             }
 
             _xmlDocument.Save(outputFileName);
             
+        }
+
+        public static void WriteProductToXml(Product product, XmlDocument xmlDocument)
+        {
+            // Creating XML-element
+            XmlNode productElement = xmlDocument.CreateElement("product"); // Creating element
+            xmlDocument.DocumentElement.AppendChild(productElement); // Pointing the parent
+
+            // Filling elements
+            XmlNode subElementName = xmlDocument.CreateElement("name");
+            subElementName.InnerText = product.Name;
+            productElement.AppendChild(subElementName);
+
+            XmlNode subElementPrice = xmlDocument.CreateElement("price");
+            subElementPrice.InnerText = product.Price.ToString();
+            productElement.AppendChild(subElementPrice);
+
+            XmlNode subElementPictureUrl = xmlDocument.CreateElement("pictureUrl");
+            subElementPictureUrl.InnerText = product.PictureUrl;
+            productElement.AppendChild(subElementPictureUrl);
+
+            XmlNode subElementProductUrl = xmlDocument.CreateElement("productUrl");
+            subElementProductUrl.InnerText = product.ProductUrl;
+            productElement.AppendChild(subElementProductUrl);
+
+            XmlNode subElementManufacturer = xmlDocument.CreateElement("manufacturer");
+            subElementManufacturer.InnerText = product.Manufacturer;
+            productElement.AppendChild(subElementManufacturer);
+
+            XmlNode subElementProductNumber = xmlDocument.CreateElement("productNumber");
+            subElementProductNumber.InnerText = product.ProductNumber.ToString();
+            productElement.AppendChild(subElementProductNumber);
+
+            XmlNode subElementStoreInternet = xmlDocument.CreateElement("storeInternet");
+            subElementStoreInternet.InnerText = product.StoreInternet.ToString();
+            productElement.AppendChild(subElementStoreInternet);
+
+            XmlNode subElementStoreYlivieska = xmlDocument.CreateElement("storeYlivieska");
+            subElementStoreYlivieska.InnerText = product.StoreYlivieska.ToString();
+            productElement.AppendChild(subElementStoreYlivieska);
+
+            XmlNode subElementStoreOulu = xmlDocument.CreateElement("storeOulu");
+            subElementStoreOulu.InnerText = product.StoreOulu.ToString();
+            productElement.AppendChild(subElementStoreOulu);
+
+            XmlNode subElementStoreLahti = xmlDocument.CreateElement("storeLahti");
+            subElementStoreLahti.InnerText = product.StoreLahti.ToString();
+            productElement.AppendChild(subElementStoreLahti);
+
+            XmlNode subElementStoreLi = xmlDocument.CreateElement("storeLi");
+            subElementStoreLi.InnerText = product.StoreLi.ToString();
+            productElement.AppendChild(subElementStoreLi);
+
+            XmlNode subElementDeliveryTime = xmlDocument.CreateElement("delirevyTime");
+            subElementDeliveryTime.InnerText = product.DeliveryTime;
+            productElement.AppendChild(subElementDeliveryTime);
+
+            XmlNode subElementDeliverPrice = xmlDocument.CreateElement("delirevyPrice");
+            subElementDeliverPrice.InnerText = product.DeliverPrice.ToString();
+            productElement.AppendChild(subElementDeliverPrice);
+
+            XmlNode subElementEan = xmlDocument.CreateElement("ean");
+            subElementEan.InnerText = product.Ean;
+            productElement.AppendChild(subElementEan);
+
+            XmlNode subElementAttributes = xmlDocument.CreateElement("attributes");
+            foreach (var pair in product.Attributes)
+            {
+                string key = pair.Key;
+                string value = pair.Value;
+                XmlNode attribute = xmlDocument.CreateElement("attribute");
+                XmlAttribute attributeName = xmlDocument.CreateAttribute("name");
+                attributeName.Value = key;
+                attribute.Attributes.Append(attributeName);
+                attribute.InnerText = value;
+                subElementAttributes.AppendChild(attribute);
+
+            }
+            productElement.AppendChild(subElementAttributes);
         }
 
 

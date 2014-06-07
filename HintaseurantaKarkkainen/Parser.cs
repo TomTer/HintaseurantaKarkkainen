@@ -108,8 +108,9 @@ namespace HintaseurantaKarkkainen
                     products.Add(product);
                 }
 
-                long endTime = Libs.GetUnixTimestamp();
-                Console.WriteLine("Iteration complete. Took: {0} ms. Sleeping {1} ms\n", endTime - startTime, sleepTime);
+                int timeTook = (int)(Libs.GetUnixTimestamp() - startTime);
+                MainEntryPoint.BenchmarkList.Add(timeTook);
+                Console.WriteLine("Iteration complete. Took: {0} ms. Sleeping {1} ms\n", timeTook, sleepTime);
                 System.Threading.Thread.Sleep(sleepTime);
             }
 
